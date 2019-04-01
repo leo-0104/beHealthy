@@ -1,0 +1,22 @@
+CREATE TABLE `case_history` (
+  `cid` int(10) NOT NULL AUTO_INCREMENT,
+  `photo` varchar(512) NOT NULL COMMENT '病历原件',
+  `visitName` varchar(32) NOT NULL COMMENT '就诊人',
+  `hospitalName` varchar(32) NOT NULL COMMENT '就诊医院',
+  `office` varchar(32) NOT NULL COMMENT '科室',
+  `doctorName` varchar(32) DEFAULT NULL COMMENT '就诊医生',
+  `visitDate` varchar(32) NOT NULL COMMENT '就诊日期',
+  `checkup` varchar(1024) DEFAULT NULL COMMENT '体格检查',
+  `diagnosisResult` varchar(1024) DEFAULT NULL COMMENT '诊断结果',
+  `mainSuit` varchar(1024) DEFAULT NULL COMMENT '主诉',
+  `historyNow` varchar(1024) DEFAULT NULL COMMENT '现病史',
+  `historyPast` varchar(1024) DEFAULT NULL COMMENT '既往史',
+  `historyAllergy` varchar(1024) DEFAULT NULL COMMENT '过敏史',
+  `historyFamily` varchar(1024) DEFAULT NULL COMMENT '家族史',
+  `historyMarriage` varchar(1024) DEFAULT NULL COMMENT '婚育史',
+  `suggestion` varchar(1024) DEFAULT NULL COMMENT '处理意见',
+  `uid` int(10) NOT NULL COMMENT '对应user_information中的uid',
+  `fid` int(10) DEFAULT NULL COMMENT '对应family_member中的fid',
+  `operTime` varchar(32) NOT NULL COMMENT '操作时间',
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='病历信息表'
