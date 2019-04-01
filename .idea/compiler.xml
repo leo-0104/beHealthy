@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="beHealthyMicroServiceconfigserver3344" />
+        <module name="beHealthyMicroServiceeurekaserver7001" />
+        <module name="beHealthyMicroServiceeurekaserver7002" />
+        <module name="beHealthyMicroServiceeurekaserver7003" />
+        <module name="beHealthyMicroServicezuulgateway9527" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="beHealthyMicroserviceenrekaserver7001" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
