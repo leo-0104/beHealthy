@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      name: eureka-server-7001   #对应仓库中的文件名
+      uri: http://config-server-3344.com:3344         #SpringCloud获取服务地址
+      label: master   #对应访问的分支

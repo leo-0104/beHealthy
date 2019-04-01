@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      name: eureka-server-7003   #对应远程仓库的配置文件
+      uri: http://config-server-3344.com:3344      #获取远程配置文件的config server地址
+      label: master #对应远程仓库的分支

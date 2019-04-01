@@ -1,16 +1,3 @@
-server:
-  port: 7003
-
-
-eureka:
-  instance:
-    hostname: eureka7003.com    # eureka服务端的实例名称
-
-  client:
-    fetch-registry: false  # false表示自己就是注册中心，我的职责就是维护实例，并不需要去检索服务
-    register-with-eureka: false  #false表示不向注册中心注册自己
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
-#       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-
-
+spring:
+  application:
+    name: beHealthyMicroService-eureka-server-7003
