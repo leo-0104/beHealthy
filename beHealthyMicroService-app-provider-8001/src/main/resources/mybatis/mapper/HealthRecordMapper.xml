@@ -11,7 +11,7 @@
         insert into health_record <include refid="key"/> values <include refid="value"/>
     </insert>
     <delete id="deleteHealthRecord">
-        delete from health_record where hid = #{hid}
+        delete from health_record where nid = #{nid}
     </delete>
     <update id="updateHealthRecord" parameterType="HealthRecord">
         update health_record
