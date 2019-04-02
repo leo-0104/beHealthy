@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.MedicalAuscultationDao">
+    <select id="getAll" resultType="MedicalAuscultation">
+        select * from medical_auscultation where uid = #{uid}
+    </select>
+
+    <select id="findById" resultType="MedicalAuscultation">
+        select * from medical_auscultation where mid = #{mid}
+    </select>
+    <insert id="addMedicalAus" parameterType="MedicalAuscultation">
+        insert into medical_auscultation(videoUrl,content,uid,operTime) value (#{videoUrl},#{content},#{uid},#{operTime})
+    </insert>
+    <update id="updateMedicalAus" parameterType="MedicalAuscultation">
+        update medical_auscultation set videoUrl = #{videoUrl},content = #{content} , operTime = #{operTime} where mid = #{mid} and uid = #{uid}
+    </update>
+
+    <delete id="deleteMedicalAus">
+        delete from medical_auscultation where mid = #{mid}
+    </delete>
+</mapper>
