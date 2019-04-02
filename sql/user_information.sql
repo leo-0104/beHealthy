@@ -8,5 +8,6 @@ CREATE TABLE `user_information` (
   `phone` varchar(16) DEFAULT NULL COMMENT '手机号码',
   `email` varchar(32) DEFAULT NULL COMMENT '邮箱',
   `registerTime` varchar(32) DEFAULT NULL COMMENT '注册时间',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表'
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `accountName` (`accountName`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表'

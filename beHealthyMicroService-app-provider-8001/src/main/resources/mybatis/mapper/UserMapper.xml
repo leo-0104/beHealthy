@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.UserDao">
+
+    <select id="login" parameterType="User" resultType="User">
+        select * from user_information where accountName = #{accountName} and password = #{password};
+    </select>
+
+    <insert id="register" parameterType="User" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
+        insert into user_information(<include refid="key"/> ) values (<include refid="value"/> )
+    </insert>
+
+    <select id="findById" resultType="User">
+        select  * from user_information where uid = #{uid}
+    </select>
+    <update id="updateUser" parameterType="User">
+        update user_information
+        <trim prefix="set" suffixOverrides=",">
+            <if test="accountName != null and accountName != ''">
+                accountName = #{accountName},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+            <if test="birthday != null and birthday != ''">
+                birthday = #{birthday},
+            </if>
+            <if test="profile != null and profile != ''">
+                profile = #{profile},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="registerTime !=null and register != ''">
+                registerTime =#{registerTime},
+            </if>
+        </trim>
+        where uid = #{uid}
+    </update>
+
+    <!--动态插入sql-->
+    <!-- 对应的插入字段的名字 -->
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="accountName != null and accountName != ''">
+                accountName,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="gender != null and gender != ''">
+                gender,
+            </if>
+            <if test="birthday != null and birthday != ''">
+                birthday,
+            </if>
+            <if test="profile != null and profile != ''">
+                profile,
+            </if>
+           <if test="phone != null and phone != ''">
+               phone,
+           </if>
+           <if test="email != null and email != ''">
+               email,
+           </if>
+           <if test="registerTime !=null and register != ''">
+               registerTime,
+           </if>
+        </trim>
+    </sql>
+
+    <!-- 对应的插入字段的值 -->
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="accountName != null and accountName != ''">
+                #{accountName},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="gender != null and gender != ''">
+                #{gender},
+            </if>
+            <if test="birthday != null and birthday != ''">
+                #{birthday},
+            </if>
+            <if test="profile != null and profile != ''">
+                #{profile},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                #{email},
+            </if>
+            <if test="registerTime !=null and register != ''">
+                #{registerTime},
+            </if>
+        </trim>
+    </sql>
+</mapper>

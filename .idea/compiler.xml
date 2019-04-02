@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="beHealthyMicroServiceAppProvider8001" />
+        <module name="beHealthyMicroServicecommonapi" />
         <module name="beHealthyMicroServiceconfigserver3344" />
+        <module name="beHealthyMicroServiceconsumerfeign9000" />
         <module name="beHealthyMicroServiceeurekaserver7001" />
         <module name="beHealthyMicroServiceeurekaserver7002" />
         <module name="beHealthyMicroServiceeurekaserver7003" />

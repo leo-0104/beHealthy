@@ -13,6 +13,9 @@
         <module>beHealthyMicroService-eureka-server-7003</module>
         <module>beHealthyMicroService-zuul-gateway-9527</module>
         <module>beHealthyMicroService-config-server-3344</module>
+        <module>beHealthyMicroService-common-api</module>
+        <module>beHealthyMicroService-app-provider-8001</module>
+        <module>beHealthyMicroService-consumer-feign-9000</module>
     </modules>
 
     <!--作为一个共同的pom文件-->

@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      label: master                  #对应访问的分支
+      uri: http://config-server-3344.com:3344   #spring cloud获取配置文件的config server地址
+      name: provider-app-8001         #对应仓库中的文件名

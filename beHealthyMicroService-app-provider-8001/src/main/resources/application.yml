@@ -1,0 +1,36 @@
+server:
+  port: 8001
+#mybatis整合
+mybatis:
+  config-location: classpath:mybatis/mybatis.config.xml      # mybatis配置文件所在路径
+  type-aliases-package: com.example.demo.entity             # 所有Entity别名类所在包
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
+
+spring:
+  application:
+    name: microservicecloud-provider-app
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource           # 当前数据源操作类型
+    driver-class-name: com.mysql.jdbc.Driver              # mysql驱动包
+    url: jdbc:mysql://localhost:3306/be_healthy?serverTimezone=UTC            # 数据库名称
+    password: root
+    username: root
+    dbcp2:
+      min-idle: 5                                         # 数据库连接池的最小维持连接数
+      initial-size: 5                                     # 初始化连接数
+      max-total: 10                                       # 最大连接数
+      max-wait-millis: 200                               # 最大等待超时时间
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka,           # 服务注册的地址
+  instance:
+    instance-id: microservicecloud-provider-app-8001     # 主机映射名称的修改，对应eureka服务注册中心中Instances currently registered with Eureka中的status
+    prefer-ip-address: true                              # 主机ip地址信息显示，鼠标放上instance-id上，会显示ip地址，方便查看服务地址(访问路径可以访问ip地址)
+
+info:
+  app.name: microservicecloud-provider-dept-8001
+  company.name: www.davie.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
