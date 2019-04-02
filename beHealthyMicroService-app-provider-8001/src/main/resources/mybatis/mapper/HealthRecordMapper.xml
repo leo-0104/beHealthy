@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.HealthRecordDao">
+    <select id="getAll" resultType="HealthRecord">
+        select * from health_record where uid = #{uid};
+    </select>
+    <select id="findById" resultType="HealthRecord">
+        select  * from health_record where hid = #{hid}
+    </select>
+    <insert id="addHealthRecord" parameterType="HealthRecord">
+        insert into health_record <include refid="key"/> values <include refid="value"/>
+    </insert>
+    <delete id="deleteHealthRecord">
+        delete from health_record where hid = #{hid}
+    </delete>
+    <update id="updateHealthRecord" parameterType="HealthRecord">
+        update health_record
+        <trim prefix="set" suffixOverrides=",">
+            date = #{date},time = #{time},symptom = #{symptom},operTime = #{operTime},
+            <if test="food != null and food != ''">
+                food = #{food},
+            </if>
+            <if test="sport != null and sport != ''">
+                sport = #{sport},
+            </if>
+        </trim>
+        where uid = #{uid} and hid = #{hid}
+    </update>
+
+    <!--动态插入sql-->
+    <!-- 对应的插入字段的名字 -->
+    <sql id="key">
+        <trim suffixOverrides="," prefix="(" suffix=")" >
+        date,time,symptom,uid,operTime,
+            <if test="food != null and food != ''">
+                food,
+            </if>
+            <if test="sport != null and sport != ''">
+                sport,
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 对应的插入字段的值 -->
+    <sql id="value">
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            #{date},#{time},#{symptom},#{uid},#{operTime},
+            <if test="food != null and food != ''">
+                #{food},
+            </if>
+            <if test="sport != null and sport != ''">
+                #{sport},
+            </if>
+        </trim>
+    </sql>
+</mapper>
