@@ -8,7 +8,13 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
 
 
-
 ribbon:
   eureka:
     enabled: true
+
+
+#不同的服务接口都创建了相同的FeignClient，导致报错
+# The bean 'microservicecloud-provider-app.FeignClientSpecification', defined in null, could not be registered
+spring:
+  main:
+    allow-bean-definition-overriding: true

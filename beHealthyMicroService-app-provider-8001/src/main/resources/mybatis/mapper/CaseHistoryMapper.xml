@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.CaseHistoryDao">
+    <select id="getAll" resultType="CaseHistory">
+        select * from case_history where
+        <choose>
+            <when test="flag">
+                uid = #{id}
+            </when>
+            <otherwise>
+                fid = #{id}
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findById" resultType="CaseHistory">
+        select * from case_history where cid = #{cid}
+    </select>
+
+    <insert id="addCaseHis" parameterType="CaseHistory">
+        insert into case_history <include refid="key"/>
+        values <include refid="value"/>
+    </insert>
+
+    <delete id="deleteCaseHis" parameterType="java.lang.Integer">
+        delete from case_history where cid = #{cid}
+    </delete>
+    <update id="updateCaseHis" parameterType="CaseHistory">
+        update case_history
+        <trim suffixOverrides="," prefix="set">
+            photo = #{photo},visitName = #{visitName},hospitalName = #{hospitalName},
+            office = #{office},visitDate = #{visitDate},operTime = #{operTime},
+            <if test="doctorName != null and doctorName !=''">
+                doctorName = #{doctorName},
+            </if>
+            <if test="checkup != null and checkup !=''">
+                checkup = #{checkup},
+            </if>
+            <if test="diagnosisResult != null and diagnosisResult !=''">
+                diagnosisResult = #{diagnosisResult},
+            </if>
+            <if test="mainSuit != null and mainSuit !=''">
+                mainSuit = #{mainSuit},
+            </if>
+            <if test="historyNow != null and historyNow !=''">
+                historyNow = #{historyNow},
+            </if>
+            <if test="historyPast != null and historyPast !=''">
+                historyPast = #{historyPast},
+            </if>
+            <if test="historyAllergy != null and historyAllergy !=''">
+                historyAllergy = #{historyAllergy},
+            </if>
+            <if test="historyFamily != null and historyFamily !=''">
+                historyFamily = #{historyFamily},
+            </if>
+            <if test="historyMarriage != null and historyMarriage !=''">
+                historyMarriage = #{historyMarriage},
+            </if>
+            <if test="suggestion != null and suggestion !=''">
+                suggestion = #{suggestion},
+            </if>
+
+        </trim>
+        where cid = #{cid} and uid = #{uid}
+        <if test="fid != null and fid !=''">
+            and fid = #{fid}
+        </if>
+    </update>
+    <!--动态插入sql-->
+    <!-- 对应的插入字段的名字 -->
+    <sql id="key">
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            uid,photo,visitName,hospitalName,office,visitDate,operTime,
+            <if test="doctorName != null and doctorName !=''">
+                doctorName,
+            </if>
+            <if test="checkup != null and checkup !=''">
+                checkup,
+            </if>
+            <if test="diagnosisResult != null and diagnosisResult !=''">
+                diagnosisResult,
+            </if>
+            <if test="mainSuit != null and mainSuit !=''">
+                mainSuit,
+            </if>
+            <if test="historyNow != null and historyNow !=''">
+                historyNow,
+            </if>
+            <if test="historyPast != null and historyPast !=''">
+                historyPast,
+            </if>
+             <if test="historyAllergy != null and historyAllergy !=''">
+                 historyAllergy,
+           </if>
+            <if test="historyFamily != null and historyFamily !=''">
+                historyFamily,
+            </if>
+             <if test="historyMarriage != null and historyMarriage !=''">
+                 historyMarriage,
+             </if>
+            <if test="suggestion != null and suggestion !=''">
+                suggestion,
+            </if>
+            <if test="fid != null and fid !=''">
+                fid,
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="value">
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            #{uid},#{photo},#{visitName},#{hospitalName},#{office},#{visitDate},#{operTime},
+            <if test="doctorName != null and doctorName !=''">
+                 #{doctorName},
+            </if>
+            <if test="checkup != null and checkup !=''">
+                #{checkup},
+            </if>
+            <if test="diagnosisResult != null and diagnosisResult !=''">
+                 #{diagnosisResult},
+            </if>
+            <if test="mainSuit != null and mainSuit !=''">
+                mainSuit = #{mainSuit},
+            </if>
+            <if test="historyNow != null and historyNow !=''">
+                #{historyNow},
+            </if>
+            <if test="historyPast != null and historyPast !=''">
+                 #{historyPast},
+            </if>
+            <if test="historyAllergy != null and historyAllergy !=''">
+                #{historyAllergy},
+            </if>
+            <if test="historyFamily != null and historyFamily !=''">
+                #{historyFamily},
+            </if>
+            <if test="historyMarriage != null and historyMarriage !=''">
+                #{historyMarriage},
+            </if>
+            <if test="suggestion != null and suggestion !=''">
+                #{suggestion},
+            </if>
+            <if test="fid != null and fid !=''">
+                #{fid},
+            </if>
+        </trim>
+    </sql>
+</mapper>

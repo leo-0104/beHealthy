@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.FamilyMemberDao">
+   <insert id="registerMember" parameterType="FamilyMember">
+      insert into family_member(uid,name,gender, <include refid="key"/>) values(#{uid},#{name},#{gender},<include refid="value"/>)
+   </insert>
+
+    <select id="findById" resultType="FamilyMember" parameterType="java.lang.Integer">
+        select * from family_member where fid = #{fid}
+    </select>
+
+    <select id="getAll" parameterType="java.lang.Integer" resultType="FamilyMember">
+        select * from family_member
+    </select>
+    <update id="updateMember" parameterType="FamilyMember">
+        update family_member set name = #{name},profile = #{profile},gender = #{gender},birthday = #{birthday},
+        relation = #{relation},operTime = #{operTime}  where fid = #{fid} and uid = #{uid}
+    </update>
+
+    <delete id="deleteMember" parameterType="java.lang.Integer">
+        delete from family_member where fid = #{fid} and uid = #{uid}
+    </delete>
+    <!--动态插入sql-->
+    <!-- 对应的插入字段的名字 -->
+    <sql id="key">
+         <trim suffixOverrides=",">
+             <if test="profile != null  and profile != ''">
+                 profile,
+             </if>
+             <if test="birthday != null  and birthday != ''">
+                 birthday,
+            </if>
+             <if test="relation != null  and relation != ''">
+                 relation,
+             </if>
+             <if test="operTime != null  and operTime != ''">
+                 operTime,
+             </if>
+         </trim>
+    </sql>
+
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="profile != null  and profile != ''">
+                #{profile},
+            </if>
+            <if test="birthday != null  and birthday != ''">
+                #{birthday},
+            </if>
+            <if test="relation != null  and relation != ''">
+                #{relation},
+            </if>
+            <if test="operTime != null  and operTime != ''">
+                #{operTime},
+            </if>
+        </trim>
+    </sql>
+</mapper>
