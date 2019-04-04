@@ -22,7 +22,7 @@
             <if test="password != null and password != ''">
                 password = #{password},
             </if>
-            <if test="gender != null and gender != ''">
+            <if test="gender != null">
                 gender = #{gender},
             </if>
             <if test="birthday != null and birthday != ''">
@@ -37,7 +37,7 @@
             <if test="email != null and email != ''">
                 email = #{email},
             </if>
-            <if test="registerTime !=null and register != ''">
+            <if test="registerTime !=null and registerTime != ''">
                 registerTime =#{registerTime},
             </if>
         </trim>
@@ -54,7 +54,7 @@
             <if test="password != null and password != ''">
                 password,
             </if>
-            <if test="gender != null and gender != ''">
+            <if test="gender != null">
                 gender,
             </if>
             <if test="birthday != null and birthday != ''">
@@ -69,7 +69,7 @@
            <if test="email != null and email != ''">
                email,
            </if>
-           <if test="registerTime !=null and register != ''">
+           <if test="registerTime !=null and registerTime != ''">
                registerTime,
            </if>
         </trim>
@@ -84,7 +84,7 @@
             <if test="password != null and password != ''">
                 #{password},
             </if>
-            <if test="gender != null and gender != ''">
+            <if test="gender != null">
                 #{gender},
             </if>
             <if test="birthday != null and birthday != ''">
@@ -99,7 +99,7 @@
             <if test="email != null and email != ''">
                 #{email},
             </if>
-            <if test="registerTime !=null and register != ''">
+            <if test="registerTime !=null and registerTime != ''">
                 #{registerTime},
             </if>
         </trim>

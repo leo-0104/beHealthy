@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.CaseHistory;
 import com.example.demo.service.CaseHistoryService;
-import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
