@@ -17,6 +17,8 @@ public class HealthRecord {
     private String date;
     //时间
     private String time;
+    //地点
+    private String address;
     //食品/饮料摄入
     private String food;
     //运动情况描述

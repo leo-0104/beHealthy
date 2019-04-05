@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.dao.UserDao">
 
     <select id="login" parameterType="User" resultType="User">
-        select * from user_information where accountName = #{accountName} and password = #{password};
+        select * from user_information where email = #{email} and password = #{password};
     </select>
 
     <insert id="register" parameterType="User" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">

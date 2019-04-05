@@ -13,12 +13,12 @@ public class HealthRecordController {
     @Autowired
     private HealthRecordService healthRecordService;
 
-    @GetMapping("/getAll/{uid}")
+    @PostMapping("/getAll/{uid}")
     public List<HealthRecord> getAll(@PathVariable("uid") Integer uid) {
         return healthRecordService.getAll(uid);
     }
 
-    @GetMapping("/findById/{hid}")
+    @PostMapping("/findById/{hid}")
     public HealthRecord findById(@PathVariable("hid") Integer hid) {
         return healthRecordService.findById(hid);
     }

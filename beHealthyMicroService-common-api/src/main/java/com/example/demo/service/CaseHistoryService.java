@@ -12,10 +12,10 @@ import java.util.List;
 @FeignClient(value = "microservicecloud-provider-app")
 public interface CaseHistoryService {
 
-    @GetMapping("/caseHistory/getAll/{id}/{flag}")
+    @PostMapping("/caseHistory/getAll/{id}/{flag}")
     public List<CaseHistory> getAll(@PathVariable("id")Integer id, @PathVariable("flag")Boolean flag);
 
-    @GetMapping("/caseHistory/findById/{cid}")
+    @PostMapping("/caseHistory/findById/{cid}")
     public CaseHistory findById(@PathVariable("cid")Integer cid);
 
     @PostMapping("/caseHistory/addCaseHistory")

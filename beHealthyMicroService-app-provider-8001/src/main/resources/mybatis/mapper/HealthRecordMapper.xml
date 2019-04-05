@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.dao.HealthRecordDao">
     <select id="getAll" resultType="HealthRecord">
-        select * from health_record where uid = #{uid};
+        select * from health_record where uid = #{uid} order by hid desc;
     </select>
     <select id="findById" resultType="HealthRecord">
         select  * from health_record where hid = #{hid}
@@ -11,12 +11,12 @@
         insert into health_record <include refid="key"/> values <include refid="value"/>
     </insert>
     <delete id="deleteHealthRecord">
-        delete from health_record where nid = #{nid}
+        delete from health_record where hid = #{hid}
     </delete>
     <update id="updateHealthRecord" parameterType="HealthRecord">
         update health_record
         <trim prefix="set" suffixOverrides=",">
-            date = #{date},time = #{time},symptom = #{symptom},operTime = #{operTime},
+             time = #{time},address = #{address},symptom = #{symptom},operTime = #{operTime},
             <if test="food != null and food != ''">
                 food = #{food},
             </if>
@@ -31,7 +31,7 @@
     <!-- 对应的插入字段的名字 -->
     <sql id="key">
         <trim suffixOverrides="," prefix="(" suffix=")" >
-        date,time,symptom,uid,operTime,
+        date,time,address,symptom,uid,operTime,
             <if test="food != null and food != ''">
                 food,
             </if>
@@ -44,7 +44,7 @@
     <!-- 对应的插入字段的值 -->
     <sql id="value">
         <trim suffixOverrides="," prefix="(" suffix=")">
-            #{date},#{time},#{symptom},#{uid},#{operTime},
+            #{date},#{time},#{address},#{symptom},#{uid},#{operTime},
             <if test="food != null and food != ''">
                 #{food},
             </if>

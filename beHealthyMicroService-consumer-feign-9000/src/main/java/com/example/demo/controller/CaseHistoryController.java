@@ -6,7 +6,9 @@ import com.example.demo.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @RestController
 @RequestMapping("/caseHistory")
@@ -14,12 +16,12 @@ public class CaseHistoryController {
     @Autowired
     private CaseHistoryService caseHistoryService;
 
-    @GetMapping("/getAll/{id}/{flag}")
+    @PostMapping("/getAll/{id}/{flag}")
     public String getAll(@PathVariable("id")Integer id, @PathVariable("flag")Boolean flag){
         return JsonResult.success(caseHistoryService.getAll(id,flag));
     }
 
-    @GetMapping("/findById/{cid}")
+    @PostMapping("/findById/{cid}")
     public String findById(@PathVariable("cid")Integer cid){
         CaseHistory caseHistory =  caseHistoryService.findById(cid);
         if (caseHistory == null)
@@ -29,6 +31,14 @@ public class CaseHistoryController {
 
     @PostMapping("/addCaseHistory")
     public String addCaseHistory(@RequestBody CaseHistory caseHistory){
+        //操作时间
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        caseHistory.setOperTime(simpleDateFormat.format(date));
+        //补全头像路径
+        if (caseHistory.getPhoto() != null){
+            caseHistory.setPhoto("E:\\image\\medicalRecordPhoto\\" + caseHistory.getPhoto());
+        }
         Integer num =  caseHistoryService.addCaseHistory(caseHistory);
         if (num <= 0)
             return JsonResult.failed(-1,"保存病历信息失败");
@@ -37,7 +47,11 @@ public class CaseHistoryController {
 
     @PostMapping("/updateCaseHistory")
     public String updateCaseHistory(@RequestBody CaseHistory caseHistory){
-        Integer num =  caseHistoryService.updateCaseHistory(caseHistory);
+        //操作时间
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        caseHistory.setOperTime(simpleDateFormat.format(date));
+        Integer num = caseHistoryService.updateCaseHistory(caseHistory);
         if (num <= 0)
             return JsonResult.failed(-1,"更新病历信息失败");
         return JsonResult.success();

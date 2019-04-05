@@ -6,6 +6,8 @@ import com.example.demo.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -14,12 +16,12 @@ public class HealthRecordController {
     @Autowired
     private HealthRecordService healthRecordService;
 
-    @GetMapping("/getAll/{uid}")
+    @PostMapping("/getAll/{uid}")
     public String getAll(@PathVariable("uid") Integer uid) {
         return JsonResult.success(healthRecordService.getAll(uid));
     }
 
-    @GetMapping("/findById/{hid}")
+    @PostMapping("/findById/{hid}")
     public String findById(@PathVariable("hid") Integer hid) {
         HealthRecord healthRecord = healthRecordService.findById(hid);
         if (healthRecord == null)
@@ -29,6 +31,12 @@ public class HealthRecordController {
 
     @PostMapping("/addHealthRecord")
     public String addHealthRecord(@RequestBody HealthRecord healthRecord) {
+        //操作时间
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        healthRecord.setOperTime(simpleDateFormat.format(date));
+        simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+        healthRecord.setDate(simpleDateFormat.format(date));
         Integer num = healthRecordService.addHealthRecord(healthRecord);
         if (num <= 0)
             return JsonResult.failed(-1,"添加康复记录信息失败");
@@ -36,6 +44,10 @@ public class HealthRecordController {
     }
     @PostMapping("/updateHealthRecord")
     public String  updateHealthRecord(@RequestBody HealthRecord healthRecord) {
+        //操作时间
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        healthRecord.setOperTime(simpleDateFormat.format(date));
         Integer num =  healthRecordService.updateHealthRecord(healthRecord);
         if (num <= 0)
             return JsonResult.failed(-1,"更新康复记录信息失败");

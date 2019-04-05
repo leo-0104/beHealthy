@@ -11,6 +11,7 @@
                 fid = #{id}
             </otherwise>
         </choose>
+        order by cid desc
     </select>
 
     <select id="findById" resultType="CaseHistory">
@@ -63,7 +64,7 @@
 
         </trim>
         where cid = #{cid} and uid = #{uid}
-        <if test="fid != null and fid !=''">
+        <if test="fid > 0">
             and fid = #{fid}
         </if>
     </update>
@@ -81,7 +82,7 @@
             <if test="diagnosisResult != null and diagnosisResult !=''">
                 diagnosisResult,
             </if>
-            <if test="mainSuit != null and mainSuit !=''">
+            <if test="mainSuit != null and mainSuit != ''">
                 mainSuit,
             </if>
             <if test="historyNow != null and historyNow !=''">
@@ -121,7 +122,7 @@
                  #{diagnosisResult},
             </if>
             <if test="mainSuit != null and mainSuit !=''">
-                mainSuit = #{mainSuit},
+                 #{mainSuit},
             </if>
             <if test="historyNow != null and historyNow !=''">
                 #{historyNow},

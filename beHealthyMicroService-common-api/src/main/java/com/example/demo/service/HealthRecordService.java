@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 @FeignClient(value = "microservicecloud-provider-app")
 public interface HealthRecordService {
-    @GetMapping("/healthRecord/getAll/{uid}")
+    @PostMapping("/healthRecord/getAll/{uid}")
     public List<HealthRecord> getAll(@PathVariable("uid") Integer uid);
 
-    @GetMapping("/healthRecord/findById/{hid}")
+    @PostMapping("/healthRecord/findById/{hid}")
     public HealthRecord findById(@PathVariable("hid") Integer hid) ;
 
     @PostMapping("/healthRecord/addHealthRecord")

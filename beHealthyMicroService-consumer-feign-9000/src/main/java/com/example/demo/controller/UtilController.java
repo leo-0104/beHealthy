@@ -23,7 +23,9 @@ public class UtilController {
             //获取输入流对象
             InputStream inputStream = uploadFile.getInputStream();
             String filePath = "E:\\image\\personPhoto\\";
-
+            if(id == 2){
+                filePath = "E:\\image\\medicalRecordPhoto\\";
+            }
             FileOutputStream fileOutputStream = new FileOutputStream(filePath + new File(fileName));
             //读取和写入信息
             int len = -1;

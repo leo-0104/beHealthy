@@ -13,12 +13,12 @@ public class CaseHistoryController {
     @Autowired
     private CaseHistoryService caseHistoryService;
 
-    @GetMapping("/getAll/{id}/{flag}")
+    @PostMapping("/getAll/{id}/{flag}")
     public List<CaseHistory> getAll(@PathVariable("id")Integer id,@PathVariable("flag")Boolean flag){
         return caseHistoryService.getAll(id,flag);
     }
 
-    @GetMapping("/findById/{cid}")
+    @PostMapping("/findById/{cid}")
     public CaseHistory findById(@PathVariable("cid")Integer cid){
         return caseHistoryService.findById(cid);
     }
