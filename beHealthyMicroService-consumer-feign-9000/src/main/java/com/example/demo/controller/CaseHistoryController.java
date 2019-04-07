@@ -16,9 +16,9 @@ public class CaseHistoryController {
     @Autowired
     private CaseHistoryService caseHistoryService;
 
-    @PostMapping("/getAll/{id}/{flag}")
-    public String getAll(@PathVariable("id")Integer id, @PathVariable("flag")Boolean flag){
-        return JsonResult.success(caseHistoryService.getAll(id,flag));
+    @PostMapping("/getAll/{uid}/{fid}")
+    public String getAll(@PathVariable("uid")Integer uid, @PathVariable("fid")Integer fid){
+        return JsonResult.success(caseHistoryService.getAll(uid,fid));
     }
 
     @PostMapping("/findById/{cid}")

@@ -11,10 +11,10 @@ import java.util.List;
 @FeignClient(value = "microservicecloud-provider-app")
 public interface FamilyMemberService {
 
-    @GetMapping("/member/getAll/{uid}")
+    @PostMapping("/member/getAll/{uid}")
     public List<FamilyMember> getAll(@PathVariable("uid")Integer uid);
 
-    @GetMapping("/member/findById/{fid}")
+    @PostMapping("/member/findById/{fid}")
     public FamilyMember findById(@PathVariable("fid")Integer fid);
 
     @PostMapping("/member/registerMember")
@@ -23,6 +23,6 @@ public interface FamilyMemberService {
     @PostMapping("/member/updateMember")
     public Integer updateMember(@RequestBody FamilyMember familyMember);
 
-    @PostMapping("/member/deleteMember")
-    public Integer deleteMember(@RequestParam("uid") Integer uid, @RequestParam("fid")Integer fid);
+    @PostMapping("/member/deleteMember/{uid}/{fid}")
+    public Integer deleteMember(@PathVariable("uid") Integer uid, @PathVariable("fid")Integer fid);
 }

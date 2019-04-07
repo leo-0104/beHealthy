@@ -14,12 +14,12 @@ public class FamilyMemberController {
     @Autowired
     private FamilyMemberService familyMemberService;
 
-    @GetMapping("/getAll/{uid}")
+    @PostMapping("/getAll/{uid}")
     public List<FamilyMember> getAll(@PathVariable("uid")Integer uid){
         return familyMemberService.getAll(uid);
     }
 
-    @GetMapping("/findById/{fid}")
+    @PostMapping("/findById/{fid}")
     public FamilyMember findById(@PathVariable("fid")Integer fid){
         return familyMemberService.findById(fid);
     }
@@ -34,8 +34,8 @@ public class FamilyMemberController {
         return familyMemberService.updateMember(familyMember);
     }
 
-    @PostMapping("/deleteMember")
-    public Integer deleteMember(@PathParam("uid") Integer uid, @PathParam("fid")Integer fid){
+    @PostMapping("/deleteMember/{uid}/{fid}")
+    public Integer deleteMember(@PathVariable("uid") Integer uid, @PathVariable("fid")Integer fid){
         return familyMemberService.deleteMember(fid,uid);
     }
 }

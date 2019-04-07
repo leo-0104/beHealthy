@@ -12,8 +12,8 @@ import java.util.List;
 @FeignClient(value = "microservicecloud-provider-app")
 public interface CaseHistoryService {
 
-    @PostMapping("/caseHistory/getAll/{id}/{flag}")
-    public List<CaseHistory> getAll(@PathVariable("id")Integer id, @PathVariable("flag")Boolean flag);
+    @PostMapping("/caseHistory/getAll/{uid}/{fid}")
+    public List<CaseHistory> getAll(@PathVariable("uid")Integer uid, @PathVariable("fid")Integer fid);
 
     @PostMapping("/caseHistory/findById/{cid}")
     public CaseHistory findById(@PathVariable("cid")Integer cid);

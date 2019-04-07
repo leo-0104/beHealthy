@@ -2,20 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.dao.CaseHistoryDao">
     <select id="getAll" resultType="CaseHistory">
-        select * from case_history where
-        <choose>
-            <when test="flag">
-                uid = #{id}
-            </when>
-            <otherwise>
-                fid = #{id}
-            </otherwise>
-        </choose>
-        order by cid desc
+        select * from case_history where  uid = #{uid}  AND  fid = #{fid} order by cid desc
     </select>
 
     <select id="findById" resultType="CaseHistory">
-        select * from case_history where cid = #{cid}
+        select * from case_history where cid = #{cid} LIMIT 1
     </select>
 
     <insert id="addCaseHis" parameterType="CaseHistory">
@@ -103,7 +94,7 @@
             <if test="suggestion != null and suggestion !=''">
                 suggestion,
             </if>
-            <if test="fid != null and fid !=''">
+            <if test="fid != null ">
                 fid,
             </if>
         </trim>
@@ -142,7 +133,7 @@
             <if test="suggestion != null and suggestion !=''">
                 #{suggestion},
             </if>
-            <if test="fid != null and fid !=''">
+            <if test="fid != null ">
                 #{fid},
             </if>
         </trim>

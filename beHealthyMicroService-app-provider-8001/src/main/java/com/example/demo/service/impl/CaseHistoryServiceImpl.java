@@ -13,8 +13,8 @@ public class CaseHistoryServiceImpl implements CaseHistoryService {
     @Autowired
     private CaseHistoryDao caseHistoryDao;
     @Override
-    public List<CaseHistory> getAll(Integer id, Boolean flag) {
-        return caseHistoryDao.getAll(id,flag);
+    public List<CaseHistory> getAll(Integer uid, Integer fid) {
+        return caseHistoryDao.getAll(uid,fid);
     }
 
     @Override

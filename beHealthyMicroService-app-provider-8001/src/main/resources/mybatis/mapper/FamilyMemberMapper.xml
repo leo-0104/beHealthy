@@ -6,11 +6,11 @@
    </insert>
 
     <select id="findById" resultType="FamilyMember" parameterType="java.lang.Integer">
-        select * from family_member where fid = #{fid}
+        select * from family_member where fid = #{fid} limit 1;
     </select>
 
     <select id="getAll" parameterType="java.lang.Integer" resultType="FamilyMember">
-        select * from family_member
+        select * from family_member where uid = #{uid}
     </select>
     <update id="updateMember" parameterType="FamilyMember">
         update family_member set name = #{name},profile = #{profile},gender = #{gender},birthday = #{birthday},
