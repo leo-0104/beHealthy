@@ -11,10 +11,10 @@ import java.util.List;
 
 @FeignClient(value = "microservicecloud-provider-app")
 public interface MedicalAuscultationService {
-    @GetMapping("/medicalAus/getAll/{uid}")
+    @PostMapping("/medicalAus/getAll/{uid}")
     public List<MedicalAuscultation> getAll(@PathVariable("uid") Integer uid) ;
 
-    @GetMapping("/medicalAus/findById/{mid}")
+    @PostMapping("/medicalAus/findById/{mid}")
     public MedicalAuscultation findById(@PathVariable("mid") Integer mid);
 
     @PostMapping("/medicalAus/addMedicalAus")
@@ -25,6 +25,6 @@ public interface MedicalAuscultationService {
     public Integer updateMedicalAus(@RequestBody MedicalAuscultation medicalAuscultation);
 
 
-    @PostMapping("/medicalAus/deleteMedicalAus/{mid}")
-    public Integer deleteMedicalAus(@PathVariable("mid") Integer mid);
+    @PostMapping("/medicalAus/deleteMedicalAus/{mid}/{fileName}")
+    public Integer deleteMedicalAus(@PathVariable("mid") Integer mid,@PathVariable("fileName")String fileName);
 }

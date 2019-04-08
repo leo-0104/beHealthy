@@ -13,12 +13,12 @@ public class MedicalAuscultationController {
     @Autowired
     private MedicalAuscultationService medicalAuscultationService;
 
-    @GetMapping("/getAll/{uid}")
+    @PostMapping("/getAll/{uid}")
     public List<MedicalAuscultation> getAll(@PathVariable("uid") Integer uid) {
         return medicalAuscultationService.getAll(uid);
     }
 
-    @GetMapping("/findById/{mid}")
+    @PostMapping("/findById/{mid}")
     public MedicalAuscultation findById(@PathVariable("mid") Integer mid) {
         return medicalAuscultationService.findById(mid);
     }
@@ -35,8 +35,8 @@ public class MedicalAuscultationController {
     }
 
 
-    @PostMapping("/deleteMedicalAus/{mid}")
-    public Integer deleteMedicalAus(@PathVariable("mid") Integer mid) {
+    @PostMapping("/deleteMedicalAus/{mid}/{fileName}")
+    public Integer deleteMedicalAus(@PathVariable("mid") Integer mid,@PathVariable("fileName")String fileName) {
         return medicalAuscultationService.deleteMedicalAus(mid);
     }
 }
