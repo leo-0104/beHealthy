@@ -18,6 +18,11 @@ public class HealthNewsServiceImpl implements HealthNewsService {
     }
 
     @Override
+    public List<HealthNews> getAllByCondition() {
+        return healthNewsDao.getAllByCondition();
+    }
+
+    @Override
     public HealthNews findById(Integer nid) {
         return healthNewsDao.findById(nid);
     }

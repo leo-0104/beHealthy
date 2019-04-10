@@ -7,6 +7,8 @@ import java.util.List;
 public interface HealthNewsService {
     //查询所有
     public List<HealthNews> getAll();
+    //查询所有
+    public List<HealthNews> getAllByCondition();
     //根据id查询
     public HealthNews findById(Integer nid);
     //增加

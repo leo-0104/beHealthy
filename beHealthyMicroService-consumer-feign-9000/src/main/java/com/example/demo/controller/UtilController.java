@@ -9,9 +9,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -122,6 +124,43 @@ public class UtilController {
         return JsonResult.success();
     }
 
+
+    @PostMapping("/uploadImage")
+    public String uploadNewsCover(@RequestParam("file")MultipartFile uploadFile) {
+        //判断文件是否为空
+        if (uploadFile.isEmpty()) {
+            return JsonResult.failed(-1,"文件为空");
+        }
+        try {
+            //获取输入流对象
+            InputStream inputStream = uploadFile.getInputStream();
+            //获取跟目录
+            File path = new File(ResourceUtils.getURL("classpath:").getPath());
+            File upload = new File(path.getAbsolutePath(),"static/healthNews/");
+            if(!upload.exists()) upload.mkdirs();
+            FileOutputStream fileOutputStream = new FileOutputStream(upload.getAbsoluteFile() + "/" + uploadFile.getOriginalFilename());
+            //读取和写入信息
+            int len = -1;
+            //创建一个字节数组，当做缓冲区
+            byte[] bytes = new byte[1024];
+            while ((len = inputStream.read(bytes)) != -1) {
+                fileOutputStream.write(bytes, 0, bytes.length);
+                //要将缓冲区的数据推入磁盘
+                fileOutputStream.flush();
+            }
+            if (null != fileOutputStream) {
+                fileOutputStream.close();
+            }
+            if (null != inputStream) {
+                inputStream.close();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonResult.failed(-2,"上传文件失败");
+        }
+        return JsonResult.success("healthNews/" + uploadFile.getOriginalFilename());
+    }
 
     /**
      * 语音识别音频文件

@@ -4,6 +4,10 @@
     <select id="getAll" resultType="HealthNews">
         select * from health_news ;
     </select>
+
+    <select id="getAllByCondition" resultType="HealthNews">
+        select * from health_news where status = 1 order by isTop desc,operTime desc ;
+    </select>
     <select id="findById" resultType="HealthNews">
         select  * from health_news where nid = #{nid}
     </select>

@@ -1,10 +1,15 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.demo.entity.HealthNews;
 import com.example.demo.service.HealthNewsService;
 import com.example.demo.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/healthNews")
@@ -14,10 +19,19 @@ public class HealthNewsController {
 
     @GetMapping("/getAll")
     public String getAll() {
-        return JsonResult.success(healthNewsService.getAll());
+        List<HealthNews> list = healthNewsService.getAll();
+        JsonResult jsonResult = new JsonResult(0, "解析成功", list,list.size());
+        return JSON.toJSONString(jsonResult);
     }
 
-    @GetMapping("/findById/{nid}")
+    @PostMapping("/getAllByCondition")
+    public String getAllByCondition() {
+        List<HealthNews> list = healthNewsService.getAllByCondition();
+        JsonResult jsonResult = new JsonResult(0, "解析成功", list,list.size());
+        return JSON.toJSONString(jsonResult);
+    }
+
+    @PostMapping("/findById/{nid}")
     public String findById(@PathVariable("nid") Integer hid) {
         HealthNews  healthNews = healthNewsService.findById(hid);
         if (healthNews == null)
@@ -27,14 +41,22 @@ public class HealthNewsController {
 
     @PostMapping("/addHealthNews")
     public String addHealthNews(@RequestBody HealthNews healthNews) {
+        //操作时间
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        healthNews.setOperTime(simpleDateFormat.format(date));
         Integer num = healthNewsService.addHealthNews(healthNews);
         if (num <= 0)
             return JsonResult.failed(-1,"添加健康资讯信息失败");
         return JsonResult.success();
     }
     @PostMapping("/updateHealthNews")
-    public String  updateHealthNews(@RequestBody HealthNews HealthNews) {
-        Integer num =  healthNewsService.updateHealthNews(HealthNews);
+    public String  updateHealthNews(@RequestBody HealthNews healthNews) {
+        //操作时间
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        healthNews.setOperTime(simpleDateFormat.format(date));
+        Integer num =  healthNewsService.updateHealthNews(healthNews);
         if (num <= 0)
             return JsonResult.failed(-1,"更新健康资讯信息失败");
         return JsonResult.success();

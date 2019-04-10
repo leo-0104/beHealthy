@@ -17,7 +17,12 @@ public class HealthNewsController {
         return healthNewsService.getAll();
     }
 
-    @GetMapping("/findById/{nid}")
+    @PostMapping("/getAllByCondition")
+    public List<HealthNews> getAllByCondition() {
+        return healthNewsService.getAllByCondition();
+    }
+
+    @PostMapping("/findById/{nid}")
     public HealthNews findById(@PathVariable("nid") Integer nid) {
         return healthNewsService.findById(nid);
     }

@@ -13,8 +13,9 @@ import java.util.List;
 public interface HealthNewsService {
     @GetMapping("/healthNews/getAll")
     public List<HealthNews> getAll() ;
-
-    @GetMapping("/healthNews/findById/{nid}")
+    @PostMapping("/healthNews/getAllByCondition")
+    public List<HealthNews> getAllByCondition();
+    @PostMapping("/healthNews/findById/{nid}")
     public HealthNews findById(@PathVariable("nid") Integer nid);
 
     @PostMapping("/healthNews/addHealthNews")
