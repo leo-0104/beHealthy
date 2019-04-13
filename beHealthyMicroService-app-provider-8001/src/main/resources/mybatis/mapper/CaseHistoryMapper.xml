@@ -5,11 +5,27 @@
         select * from case_history where  uid = #{uid}  AND  fid = #{fid} order by cid desc
     </select>
 
+
+    <select id="getAllByQuery" resultType="CaseHistory">
+        select * from case_history where  uid = #{uid}  AND  fid = #{fid} AND
+        (
+            visitName like concat(concat('%',#{query}),'%') OR
+            hospitalName like concat(concat('%',#{query}),'%') OR
+            office like concat(concat('%',#{query}),'%') OR
+            doctorName like concat(concat('%',#{query}),'%') OR
+            checkup like concat(concat('%',#{query}),'%') OR
+            diagnosisResult like concat(concat('%',#{query}),'%') OR
+            mainSuit like concat(concat('%',#{query}),'%') OR
+            historyNow like concat(concat('%',#{query}),'%') OR
+            suggestion like concat(concat('%',#{query}),'%')
+        ) order by cid desc
+    </select>
+
     <select id="findById" resultType="CaseHistory">
         select * from case_history where cid = #{cid} LIMIT 1
     </select>
 
-    <insert id="addCaseHis" parameterType="CaseHistory">
+    <insert id="addCaseHis" parameterType="CaseHistory" useGeneratedKeys="true" keyProperty="cid" keyColumn="cid">
         insert into case_history <include refid="key"/>
         values <include refid="value"/>
     </insert>

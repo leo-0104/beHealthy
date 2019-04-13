@@ -7,6 +7,8 @@ import java.util.List;
 public interface CaseHistoryService {
     //查询所有
     public List<CaseHistory> getAll(Integer uid, Integer fid);
+    //查询所有
+    public List<CaseHistory> getAll(Integer uid, Integer fid,String query);
     //根据病历id查询
     public CaseHistory findById(Integer cid);
     //增加病历

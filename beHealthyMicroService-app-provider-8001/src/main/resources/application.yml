@@ -40,4 +40,7 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: localhost:9300

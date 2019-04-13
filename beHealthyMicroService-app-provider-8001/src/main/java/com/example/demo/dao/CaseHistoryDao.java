@@ -10,6 +10,10 @@ import java.util.List;
 public interface CaseHistoryDao {
     //查询所有
     public List<CaseHistory> getAll(@Param("uid") Integer uid,@Param("fid") Integer fid);
+
+    //查询所有
+    public List<CaseHistory> getAllByQuery(@Param("uid") Integer uid,@Param("fid") Integer fid,@Param("query") String query);
+
     //根据病历id查询
     public CaseHistory findById(Integer cid);
     //增加病历

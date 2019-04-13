@@ -18,6 +18,11 @@ public class CaseHistoryServiceImpl implements CaseHistoryService {
     }
 
     @Override
+    public List<CaseHistory> getAll(Integer uid, Integer fid, String query) {
+        return caseHistoryDao.getAllByQuery(uid,fid,query);
+    }
+
+    @Override
     public CaseHistory findById(Integer cid) {
         return caseHistoryDao.findById(cid);
     }

@@ -3,8 +3,14 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.demo.entity.HealthNews;
 import com.example.demo.service.HealthNewsService;
+import com.example.demo.service.SendService;
 import com.example.demo.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -16,6 +22,7 @@ import java.util.List;
 public class HealthNewsController {
     @Autowired
     private HealthNewsService healthNewsService;
+
 
     @GetMapping("/getAll")
     public String getAll() {
@@ -68,4 +75,6 @@ public class HealthNewsController {
             return JsonResult.failed(-1,"删除健康资讯信息失败");
         return JsonResult.success();
     }
+
+
 }
