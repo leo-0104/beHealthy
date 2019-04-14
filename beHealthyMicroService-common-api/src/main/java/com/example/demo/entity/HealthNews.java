@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * 健康资讯信息表
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class HealthNews {
+public class HealthNews implements Serializable {
     //编号
     private int nid;
     //标题
